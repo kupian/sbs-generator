@@ -1,7 +1,7 @@
 import socket
 import time
 
-PORT = 30001
+PORT = 30003
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.bind(('', PORT))
@@ -11,7 +11,9 @@ while True:
     conn, addr = sock.accept()
     print(f"Connection from {addr}")
     msg = "MSG,3,,,738065,,,,,,,35000,,,34.81609,34.07810,,,0,0,0,0".encode("utf-8")
-    for i in range(60):
+    while conn:
+        received = conn.recv(1024).decode()
+        print(f"> {received}")
+        print("Sending data")
         conn.sendall(msg)
-        time.sleep(1)
     sock.close()
