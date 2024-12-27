@@ -9,13 +9,12 @@ def generate_beast_packet():
     sync_byte = b'\x1a'  # BEAST sync byte
     packet_type = b'\x32'  # ADS-B message type
     mlat = b'\x00\x00\x00\x00\x00\x00'
-    rssi = b'\xff'
     signal = b'\x1a\x1a'
     
     adsb_payload = b'\x00\xa1\x84\x1a\x1a\xc3\xb3\x1d'  
     
     # Combine all parts into the final BEAST packet
-    beast_packet = sync_byte + packet_type + mlat + rssi + signal + adsb_payload
+    beast_packet = sync_byte + packet_type + mlat + signal + adsb_payload
     return beast_packet
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
