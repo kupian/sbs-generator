@@ -12,7 +12,7 @@ while True:
     print(f"Connection from {addr}")
     msg = "MSG,3,,,738065,,,,,,,35000,,,34.81609,34.07810,,,0,0,0,0".encode("utf-8")
     while conn:
-        received = conn.recv(1024).decode()
+        received = conn.recv(1024)
         print(f"> {received}")
         print("Sending data")
         conn.sendall(msg)
